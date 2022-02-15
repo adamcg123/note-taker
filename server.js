@@ -25,6 +25,20 @@ app.post("/api/notes", (req, res) => {
     res.json(notes)
 })
 
+app.delete("/api/notes/:id", (req, res) => {
+    const notes = JSON.parse(fs.readFileSync("./Develop/db/db.json"));
+    const deleteNote = notes.filter((delNote) => delNote.id !== req.params.id);
+    fs.writeFileSync("./Develop/db/db.json", JSON.stringify(deleteNote));
+    res.json(deleteNote);
+
+
+})
+
+app.get("/notes", function (req, res) {
+    res.sendFile(path.join(__dirname, "/Develop/public/notes.html"));
+});
+
+
 app.listen(PORT, function () {
     console.log("App listening on PORT: " + PORT);
 });
