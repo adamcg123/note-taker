@@ -31,7 +31,6 @@ app.delete("/api/notes/:id", (req, res) => {
     fs.writeFileSync("./Develop/db/db.json", JSON.stringify(deleteNote));
     res.json(deleteNote);
 
-
 })
 
 app.get("/", (req, res) => [
