@@ -10,7 +10,7 @@ var PORT = process.env.PORT || 3001;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(__dirname));
 
 app.get("/api/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "/Develop/db/db.json"))
@@ -34,8 +34,12 @@ app.delete("/api/notes/:id", (req, res) => {
 
 })
 
+app.get("/", (req, res) => [
+    res.sendFile(path.join(__dirname, "/Develop/public/index.html"))
+])
+
 app.get("/notes", function (req, res) {
-    res.sendFile(path.join(__dirname, "/Develop/public/notes.html"));
+    res.sendFile(path.join(__dirname, "./Develop/public/notes.html"));
 });
 
 
